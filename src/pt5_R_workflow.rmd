@@ -1,0 +1,34 @@
+---
+title: "R With Chris Workflow"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is an example showing you how to get started with RMarkdown. Some sample text *italics*, **bold**
+
+### Some Header
+some text under that header
+
+#### Subsection
+some more text
+
+```{r, echo = FALSE}
+x <- c(1,2,3)
+x + 5
+```
+
+This is an inline math equation: $\bar{x} = \frac{1}{n}\sum_{i=1}^{n}x_i$ We love stats!  
+
+These are the two commands required to install tinytex on your machine if you want to write latex equations and/or knit documents to pdf. Run these in the console if you that's something you're interested in:  
+
+```{r, eval = FALSE}  
+install.packages("tinytex")
+tinytex::install_tinytex()
+```
+
+
