@@ -1,0 +1,53 @@
+---
+title: 'Learning R With Chris Part 6-7: Exploring Data'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+
+```{r}
+#load in Overwatch queue time data
+qtimes_tbl <- read_csv("../data/qtimes.csv")
+qtimes_tbl
+```
+
+## Part 6  
+
+```{r}
+#histogram
+my_hist <- ggplot(qtimes_tbl, aes(x=q_time)) +
+  geom_histogram(fill="lightblue", col="black")
+my_hist
+
+#bar plot
+my_bar <- ggplot(qtimes_tbl, aes(x=role, fill=role)) +
+  geom_bar(col="black")
+my_bar
+```
+
+## Part 7  
+
+Here we explore how a player's rating affects how long they will wait for a game for each role. The boxplot also shows the center and spread of the queue times for each role.  
+
+```{r}
+#scatterplot 
+ggplot(qtimes_tbl, aes(x=rating, y=q_time, col = role)) + 
+  geom_point() + #stat_smooth(method = "lm") +   uncomment to add a linear model
+  xlab("Rating") + ylab("Queue Time (s)") + labs(title = "Queue Time vs Rating")
+
+#boxplot
+ggplot(qtimes_tbl, aes(x=role, y=q_time, fill=role)) +
+  stat_boxplot(geom = "errorbar", width = 0.2) + geom_boxplot() +
+  theme(axis.title.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        panel.grid = element_blank(),
+        axis.text.x.bottom = element_blank()) + 
+  ylab("Queue Time (s)") + labs(title = "Boxplots 4ever")
+```
+
+
+
